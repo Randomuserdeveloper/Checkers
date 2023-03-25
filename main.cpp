@@ -40,11 +40,13 @@ int main(int argc, char* args[]) {
 				entities.push_back(blackCheckerBoard);
 
 				if ((i != 4 && i != 5) && i < 3) {
-					Checker blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture };
+					const short blackColor = 0; // Use 0 for black checker pieces
+					Checker blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture, blackColor };
 					entities.push_back(blackCheckerPiece);
 				}
 				else if ((i != 3 && i != 4) && i > 4) {
-					Checker redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture };
+					const short redColor = 1; // Use 1 for red checker pieces
+					Checker redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture, redColor };
 					entities.push_back(redCheckerPiece);
 				}
 			}
