@@ -26,6 +26,7 @@ int main(int argc, char* args[]) {
 	SDL_Texture* whiteCheckerBoardTexture = window.loadTexture("whiteCheckerSquare.png");
 
 	vector<Entity> entities;
+	vector<Checker> checkerPieces;
 
 	const short layers = 8;
 
@@ -42,12 +43,12 @@ int main(int argc, char* args[]) {
 				if ((i != 4 && i != 5) && i < 3) {
 					const short blackColor = 0; // Use 0 for black checker pieces
 					Checker blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture, blackColor };
-					entities.push_back(blackCheckerPiece);
+					checkerPieces.push_back(blackCheckerPiece);
 				}
 				else if ((i != 3 && i != 4) && i > 4) {
 					const short redColor = 1; // Use 1 for red checker pieces
 					Checker redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture, redColor };
-					entities.push_back(redCheckerPiece);
+					checkerPieces.push_back(redCheckerPiece);
 				}
 			}
 		}
@@ -75,6 +76,16 @@ int main(int argc, char* args[]) {
 			while (SDL_PollEvent(&event)) {
 				if (event.type == SDL_QUIT)
 					gameRunning = false;
+
+
+				if (SDL_MOUSEBUTTONDOWN == event.type)
+					if (SDL_BUTTON_LEFT == event.button.button) {
+						int x;
+						int y;
+						SDL_GetMouseState(&x, &y);
+
+						std::cout << "Mouse Location: " << "(" << x << "," << y << ")" << std::endl;
+					}
 			}
 
 			accumulator -= deltaTime;
@@ -87,6 +98,8 @@ int main(int argc, char* args[]) {
 		for (auto& entity : entities)
 			window.render(entity);
 
+		for (auto& checker : checkerPieces)
+			window.render(checker);
 
 		window.display();
 
