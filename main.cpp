@@ -36,7 +36,6 @@ int main(int argc, char* args[]) {
 			if ((static_cast<int>(i) + static_cast<int>(j)) % 2 == 0) {
 				Entity whiteCheckerBoard{ Vector2f{j * 64, i * 64}, whiteCheckerBoardTexture };
 				entities.push_back(whiteCheckerBoard);
-				checkerLocations.push_back(Vector2f{ j * 64, i * 64 });
 			}
 			else {
 				Entity blackCheckerBoard{ Vector2f{j * 64, i * 64}, blackCheckerBoardTexture };
@@ -64,6 +63,7 @@ int main(int argc, char* args[]) {
 	const float deltaTime = 0.01f;
 	float accumulator = 0.0f;
 	float currentTime = Utilities::timeInSeconds();
+	short clickCount = 0;
 
 	while (gameRunning) {
 		int startTicks = SDL_GetTicks();
@@ -89,11 +89,21 @@ int main(int argc, char* args[]) {
 						const float checkerSize = 64;
 						Vector2f mouseVector{ static_cast<float>(mouseX) - checkerSize / 2, static_cast<float>(mouseY) - checkerSize / 2};
 
-						for (auto& checker : checkerPieces) {
+						for (auto& checker : checkerPieces) { // Error: Can only move the last rendered checker
 							float distance = checker.getPosition().getDistance(mouseVector);
 
-							if (distance <= checkerSize / 2)
+							if (clickCount == 1 && checker.getIsSelected() == true) {
+								checker.setPosition(mouseVector);
+								checker.setIsSelected(false);
+								clickCount = 0;
+							}
+
+							if (distance <= checkerSize / 2) {
 								cout << "Checker Clicked" << endl;
+								checker.setIsSelected(true);
+								clickCount++;
+								break;
+							}
 						}
 					}
 			}
