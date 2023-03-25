@@ -55,5 +55,11 @@
     <Image Include="checkerPieceRed.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="checkerPieceBlack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="kingCheckerPieceBlack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

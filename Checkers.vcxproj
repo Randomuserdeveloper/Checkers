@@ -154,7 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="blackCheckerSquare.png" />
+    <Image Include="checkerPieceBlack.png" />
     <Image Include="checkerPieceRed.png" />
+    <Image Include="kingCheckerPieceBlack.png" />
     <Image Include="kingCheckerPieceRed.png" />
     <Image Include="whiteCheckerSquare.png" />
   </ItemGroup>

@@ -17,7 +17,10 @@ int main(int argc, char* args[]) {
 
 	RenderWindow window{ "Checkers", 512, 512 };
 
-//	SDL_Texture* regularCheckerTexture = window.loadTexture("checkerPieceRed.png");
+	SDL_Texture* redCheckerTexture = window.loadTexture("checkerPieceRed.png");
+	SDL_Texture* blackCheckerTexture = window.loadTexture("checkerPieceBlack.png");
+	SDL_Texture* redKingCheckerTexture = window.loadTexture("kingCheckerPieceRed.png");
+	SDL_Texture* blackKingCheckerTexture = window.loadTexture("kingCheckerPieceBlack.png");
 	SDL_Texture* blackCheckerBoardTexture = window.loadTexture("blackCheckerSquare.png");
 	SDL_Texture* whiteCheckerBoardTexture = window.loadTexture("whiteCheckerSquare.png");
 
@@ -28,12 +31,21 @@ int main(int argc, char* args[]) {
 	for (float i = 0; i < layers; i++) {
 		for (float j = 0; j < layers; j++) {
 			if ((static_cast<int>(i) + static_cast<int>(j)) % 2 == 0) {
-				Entity whiteCheckerBoard{ Vector2f{j * 64, (i * 64)}, whiteCheckerBoardTexture };
+				Entity whiteCheckerBoard{ Vector2f{j * 64, i * 64}, whiteCheckerBoardTexture };
 				entities.push_back(whiteCheckerBoard);
 			}
 			else {
-				Entity blackCheckerBoard{ Vector2f{j * 64, (i * 64)}, blackCheckerBoardTexture };
+				Entity blackCheckerBoard{ Vector2f{j * 64, i * 64}, blackCheckerBoardTexture };
 				entities.push_back(blackCheckerBoard);
+
+				if ((i != 4 && i != 5) && i < 3) {
+					Entity blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture };
+					entities.push_back(blackCheckerPiece);
+				}
+				else if ((i != 3 && i != 4) && i > 4) {
+					Entity redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture };
+					entities.push_back(redCheckerPiece);
+				}
 			}
 		}
 	}
