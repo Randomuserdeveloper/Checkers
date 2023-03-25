@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Utilities.h"
 #include <vector>
+#include "Checker.h"
 
 using namespace std;
 
@@ -39,11 +40,11 @@ int main(int argc, char* args[]) {
 				entities.push_back(blackCheckerBoard);
 
 				if ((i != 4 && i != 5) && i < 3) {
-					Entity blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture };
+					Checker blackCheckerPiece{ Vector2f{j * 64, i * 64}, blackCheckerTexture };
 					entities.push_back(blackCheckerPiece);
 				}
 				else if ((i != 3 && i != 4) && i > 4) {
-					Entity redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture };
+					Checker redCheckerPiece{ Vector2f{j * 64, i * 64}, redCheckerTexture };
 					entities.push_back(redCheckerPiece);
 				}
 			}

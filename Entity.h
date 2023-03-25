@@ -9,6 +9,7 @@ public:
 
 
 	Vector2f& getPosition();
+	void setPosition(Vector2f position);
 	SDL_Texture* getTexture();
 	SDL_Rect getCurrentFrame();
 private:

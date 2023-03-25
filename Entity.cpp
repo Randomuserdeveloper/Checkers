@@ -13,6 +13,10 @@ Vector2f& Entity::getPosition() {
 	return position;
 }
 
+void Entity::setPosition(Vector2f position) {
+	this->position = position;
+}
+
 SDL_Texture* Entity::getTexture() {
 	return texture;
 }
