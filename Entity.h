@@ -10,8 +10,8 @@ public:
 
 	Vector2f& getPosition();
 	void setPosition(Vector2f position);
-	SDL_Texture* getTexture();
-	SDL_Rect getCurrentFrame();
+	SDL_Texture* getTexture() const;
+	SDL_Rect getCurrentFrame() const;
 private:
 	Vector2f position;
 	SDL_Rect currentFrame;

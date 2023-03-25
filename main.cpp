@@ -25,6 +25,7 @@ int main(int argc, char* args[]) {
 	SDL_Texture* blackCheckerBoardTexture = window.loadTexture("blackCheckerSquare.png");
 	SDL_Texture* whiteCheckerBoardTexture = window.loadTexture("whiteCheckerSquare.png");
 
+	vector<Vector2f> checkerLocations;
 	vector<Entity> entities;
 	vector<Checker> checkerPieces;
 
@@ -35,10 +36,12 @@ int main(int argc, char* args[]) {
 			if ((static_cast<int>(i) + static_cast<int>(j)) % 2 == 0) {
 				Entity whiteCheckerBoard{ Vector2f{j * 64, i * 64}, whiteCheckerBoardTexture };
 				entities.push_back(whiteCheckerBoard);
+				checkerLocations.push_back(Vector2f{ j * 64, i * 64 });
 			}
 			else {
 				Entity blackCheckerBoard{ Vector2f{j * 64, i * 64}, blackCheckerBoardTexture };
 				entities.push_back(blackCheckerBoard);
+				checkerLocations.push_back(Vector2f{ j * 64, i * 64 });
 
 				if ((i != 4 && i != 5) && i < 3) {
 					const short blackColor = 0; // Use 0 for black checker pieces
@@ -80,11 +83,18 @@ int main(int argc, char* args[]) {
 
 				if (SDL_MOUSEBUTTONDOWN == event.type)
 					if (SDL_BUTTON_LEFT == event.button.button) {
-						int x;
-						int y;
-						SDL_GetMouseState(&x, &y);
+						int mouseX;
+						int mouseY;
+						SDL_GetMouseState(&mouseX, &mouseY);
+						const float checkerSize = 64;
+						Vector2f mouseVector{ static_cast<float>(mouseX) - checkerSize / 2, static_cast<float>(mouseY) - checkerSize / 2};
 
-						std::cout << "Mouse Location: " << "(" << x << "," << y << ")" << std::endl;
+						for (auto& checker : checkerPieces) {
+							float distance = checker.getPosition().getDistance(mouseVector);
+
+							if (distance <= checkerSize / 2)
+								cout << "Checker Clicked" << endl;
+						}
 					}
 			}
 

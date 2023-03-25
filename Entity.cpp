@@ -17,10 +17,10 @@ void Entity::setPosition(Vector2f position) {
 	this->position = position;
 }
 
-SDL_Texture* Entity::getTexture() {
+SDL_Texture* Entity::getTexture() const {
 	return texture;
 }
 
-SDL_Rect Entity::getCurrentFrame() {
+SDL_Rect Entity::getCurrentFrame() const {
 	return currentFrame;
 }

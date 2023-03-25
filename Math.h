@@ -8,8 +8,9 @@ public:
 	Vector2f() = default;
 	Vector2f(float x, float y);
 
-	float getX();
-	float getY();
+	float getDistance(Vector2f& other) const;
+	float getX() const;
+	float getY() const;
 private:
 	float x;
 	float y;
