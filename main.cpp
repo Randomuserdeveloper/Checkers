@@ -93,7 +93,12 @@ int main(int argc, char* args[]) {
 							float distance = checker.getPosition().getDistance(mouseVector);
 
 							if (clickCount == 1 && checker.getIsSelected() == true) {
-								checker.setPosition(mouseVector);
+								for (auto& location : checkerLocations) {
+									if (location.getDistance(mouseVector) <= checkerSize / 2 + checkerSize / 4) {
+										checker.setPosition(location);
+										break;
+									}
+								}
 								checker.setIsSelected(false);
 								clickCount = 0;
 							}
