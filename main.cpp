@@ -89,7 +89,7 @@ int main(int argc, char* args[]) {
 						const float checkerSize = 64;
 						Vector2f mouseVector{ static_cast<float>(mouseX) - checkerSize / 2, static_cast<float>(mouseY) - checkerSize / 2};
 
-						for (auto& checker : checkerPieces) { // Error: Can only move the last rendered checker
+						for (auto& checker : checkerPieces) {
 							float distance = checker.getPosition().getDistance(mouseVector);
 
 							if (clickCount == 1 && checker.getIsSelected() == true) {
