@@ -103,7 +103,7 @@ int main(int argc, char* args[]) {
 								clickCount = 0;
 							}
 
-							if (distance <= checkerSize / 2) {
+							if (distance <= checkerSize / 2 && clickCount != 1) {
 								cout << "Checker Clicked" << endl;
 								checker.setIsSelected(true);
 								clickCount++;
